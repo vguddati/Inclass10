@@ -102,8 +102,8 @@ namespace Inclass10
                     {
                         context.orders.Add(o);
                     }
-                    
 
+                    context.SaveChanges();
                 }
 
                 if (!context.products.Any())
@@ -126,7 +126,7 @@ namespace Inclass10
                     context.SaveChanges();
                 }
 
-                context.SaveChanges();
+                
                 // Display all orders where a product is sold
                 var a = context.orders
                     .Include(c => c.OrderedProducts)
@@ -143,7 +143,7 @@ namespace Inclass10
                     .OrderByDescending(c => c.TotalQty)
                     .Select(c => c.order)
                     .First();
-                Console.WriteLine("**********Order where maximum amount of Kiwi has been sold**********");
+                Console.WriteLine("----------------------Order where maximum amount of Kiwi has been sold---------------------------");
                 Console.WriteLine("OrderID={0},OrderDate={2}", output.Id, output.orderdate);
             }
         }
