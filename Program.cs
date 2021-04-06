@@ -22,11 +22,11 @@ namespace Inclass10
         public String CustId { get; set; }
         public DateTime orderdate { get; set; }
         public int TotalQty{ get; set; }
-        public IList<OrderDetails> OrderedProducts { get; set; }
+        public ICollection<OrderDetails> OrderedProducts { get; set; }
     }
     public class OrderDetails
     {
-        public string ID { get; set; }
+        public int ID { get; set; }
         public Orders order { get; set; }
         public Products product { get; set; }
         public int TotalQty { get; set; }
@@ -75,9 +75,9 @@ namespace Inclass10
                     new Orders{CustId="003",orderdate=DateTime.Parse("2021-03-13"),TotalQty=7},
                     new Orders{CustId="004",orderdate=DateTime.Parse("2021-04-04"),TotalQty=6},
                     new Orders{CustId="005",orderdate=DateTime.Parse("2021-03-23"),TotalQty=5},
-                    new Orders{CustId="006",orderdate=DateTime.Parse("2021-03-23"),TotalQty=4},
-                    new Orders{CustId="007",orderdate=DateTime.Parse("2021-03-23"),TotalQty=3},
-                    new Orders{CustId="008",orderdate=DateTime.Parse("2021-03-23"),TotalQty=4}
+                    new Orders{CustId="005",orderdate=DateTime.Parse("2021-03-23"),TotalQty=4},
+                    new Orders{CustId="005",orderdate=DateTime.Parse("2021-03-23"),TotalQty=3},
+                    new Orders{CustId="005",orderdate=DateTime.Parse("2021-03-23"),TotalQty=4}
                 };
 
                 OrderDetails[] detailslist = new OrderDetails[]
@@ -134,7 +134,7 @@ namespace Inclass10
                 Console.WriteLine("--------------Order List of sold products-----------------");
                 foreach (var i in a)
                 {
-                    Console.WriteLine("OrderID={0},OrderDate={1},CustomerName={2}", i.Id, i.orderdate);
+                    Console.WriteLine("OrderID={0},OrderDate={1}", i.Id, i.orderdate);
                 }
 
                 // For a given product, find the order where it is sold the maximum.
@@ -144,7 +144,7 @@ namespace Inclass10
                     .Select(c => c.order)
                     .First();
                 Console.WriteLine("----------------------Order where maximum amount of Kiwi has been sold---------------------------");
-                Console.WriteLine("OrderID={0},OrderDate={2}", output.Id, output.orderdate);
+                Console.WriteLine("OrderID={0},CustId={1},OrderDate={2}", output.Id,output.CustId,output.orderdate);
             }
         }
     }
